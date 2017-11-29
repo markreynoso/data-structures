@@ -189,10 +189,8 @@ class Bst(object):
             self.root = None
         elif on_deck.parent.data < on_deck.data:
             on_deck.parent.right = None
-            on_deck.parent = None
         elif on_deck.parent.data > on_deck.data:
             on_deck.parent.left = None
-            on_deck.parent = None
 
     def _delete_one_child(self, on_deck):
         """Delete node with only one child."""
@@ -200,27 +198,27 @@ class Bst(object):
         if on_deck == self.root:
             if self.root.right:
                 self.root = self.root.right
+                self.root.right = on_deck.right
+                self.root.left = on_deck.left
             else:
                 self.root = self.root.left
+                self.root.right = on_deck.right
+                self.root.left = on_deck.left
             self.root.parent is None
         elif on_deck.parent.data < on_deck.data:
             if on_deck.left:
                 on_deck.parent.right = on_deck.left
-                on_deck.parent = None
-                on_deck.left = None
+                on_deck.left.parent = on_deck.parent
             elif on_deck.right:
                 on_deck.parent.right = on_deck.right
-                on_deck.parent = None
-                on_deck.right = None
+                on_deck.right.parent = on_deck.parent
         else:
             if on_deck.left:
                 on_deck.parent.left = on_deck.left
-                on_deck.parent = None
-                on_deck.left = None
+                on_deck.left.parent = on_deck.parent
             elif on_deck.right:
                 on_deck.parent.left = on_deck.right
-                on_deck.parent = None
-                on_deck.right = None
+                on_deck.right.parent = on_deck.parent
 
     def _delete_two_children(self, on_deck):
         """Delete node with two children."""
@@ -234,9 +232,6 @@ class Bst(object):
         if current.parent == on_deck:
             current.parent = on_deck.parent
             current.left = on_deck.left
-            on_deck.parent = None
-            on_deck.right = None
-            on_deck.left = None
             if current.parent:
                 if current.parent.data < current.data:
                     current.parent.right = current
@@ -252,9 +247,6 @@ class Bst(object):
             current.left = on_deck.left
             current.left.parent = current
             current.right.parent = current
-            on_deck.parent = None
-            on_deck.right = None
-            on_deck.left = None
             if current.parent:
                 if current.parent.data < current.data:
                     current.parent.right = current
@@ -269,9 +261,6 @@ class Bst(object):
             current.left = on_deck.left
             current.left.parent = current
             current.right.parent = current
-            on_deck.parent = None
-            on_deck.right = None
-            on_deck.left = None
             if current.parent:
                 if current.parent.data < current.data:
                     current.parent.right = current
