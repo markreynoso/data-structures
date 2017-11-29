@@ -72,8 +72,10 @@ class Bst(object):
         """Return total number of levels in bst."""
         if root is None:
             return 0
-        if not root.left and not root.right:
+        elif root == self.root and not root.left and not root.right:
             return 0
+        elif not root.left and not root.right:
+            return 1
         elif root.left and not root.right:
             return self.depth(root.left) + 1
         elif root.right and not root.left:
@@ -88,18 +90,14 @@ class Bst(object):
         else:
             return False
 
-    def balance(self):
+    def balance(self, node):
         """Return integer indicating balance of tree."""
-        if self.root is None:
+        if node is None:
             return 'There are no nodes in this tree.'
-        elif not self.root.left and not self.root.right:
+        if not node.left and not node.right:
             return 0
-        elif self.root.left and not self.root.right:
-            return self.depth(self.root.left)
-        elif self.root.right and not self.root.left:
-            return self.depth(self.root.right)
         else:
-            return self.depth(self.root.right) - self.depth(self.root.left)
+            return self.depth(node.left) - self.depth(node.right)
 
 
 if __name__ == '__main__':  # pragma: no cover
