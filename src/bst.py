@@ -185,6 +185,7 @@ class Bst(object):
     def _delete_no_children(self, on_deck):
         """Delete node with no children."""
         self._size -= 1
+        parent = on_deck.parent
         if not on_deck.parent:
             self.root = None
         elif on_deck.parent.data < on_deck.data:
@@ -232,6 +233,8 @@ class Bst(object):
         if current.parent == on_deck:
             current.parent = on_deck.parent
             current.left = on_deck.left
+            if current.left:
+                current.left.parent = current
             if current.parent:
                 if current.parent.data < current.data:
                     current.parent.right = current
