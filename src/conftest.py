@@ -1,4 +1,4 @@
-"""Fixutres for test_binheap.py."""
+"""Fixutres for data structures."""
 import pytest
 
 
