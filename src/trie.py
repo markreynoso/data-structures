@@ -85,4 +85,6 @@ class Trie(object):
 
     def trie_traversal(self, string):
         """Traverse the depth of the trie from string, else root."""
+        if not isinstance(string, str):
+            raise TypeError('You can only traverse with a word.')
         
