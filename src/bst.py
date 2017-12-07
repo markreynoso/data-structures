@@ -68,9 +68,14 @@ class Bst(object):
         """Return size of bst."""
         return self._size
 
-    def depth(self, root):
+    def depth(self, root=0):
         """Return total number of levels in bst."""
-        if root is None:
+        if root == 0:
+            if self.root is None:
+                return 0
+            else:
+                root = self.root
+        elif root is None:
             return 0
         elif root == self.root and not root.left and not root.right:
             return 0
@@ -81,7 +86,7 @@ class Bst(object):
         elif root.right and not root.left:
             return self.depth(root.right) + 1
         else:
-            return max(self.depth(root.left), self.depth(root.right)) + 1
+            return max(self.depth(root.left), self.depth(root.right))
 
     def contains(self, val):
         """Search for val in tree and return boolean."""
@@ -90,10 +95,15 @@ class Bst(object):
         else:
             return False
 
-    def balance(self, node):
+    def balance(self, node=0):
         """Return integer indicating balance of tree."""
+        if node is 0:
+            if self.root is None:
+                return 'There are no nodes in this tree.'
+            else:
+                node = self.root
         if node is None:
-            return 'There are no nodes in this tree.'
+            return 0
         if not node.left and not node.right:
             return 0
         else:

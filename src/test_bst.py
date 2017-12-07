@@ -91,23 +91,23 @@ def test_search_val_in_tree_retruns_node_with_data(bst_full):
 
 def test_depth_returns_int_of_total_depth_of_tree(bst_full):
     """Test depth returns integer of depth of tree."""
-    assert bst_full.depth(bst_full.root) == 3
+    assert bst_full.depth() == 2
 
 
 def test_depth_empty_tree_returns_none(bst):
     """Test depth on epmty tree returns None."""
-    assert bst.depth(bst.root) == 0
+    assert bst.depth() == 0
 
 
 def test_depth_on_large_tree_returns_full_size(bst_big):
     """Test depth on large tree returns actual size."""
-    assert bst_big.depth(bst_big.root) == 5
+    assert bst_big.depth() == 4
 
 
 def test_depth_of_tree_with_only_root_is_0(bst):
     """Test if only root in tree that depth is 0."""
     bst.insert(1)
-    assert bst.depth(bst.root) == 0
+    assert bst.depth() == 0
 
 
 def test_contains_returns_false_if_val_not_in_tree(bst_big):
@@ -129,17 +129,17 @@ def test_contains_returns_true_if_val_in_tree(bst_big):
 
 def test_balance_returns_string_if_bst_is_empty(bst):
     """Test balance returns none if bst is empty."""
-    assert bst.balance(bst.root) == 'There are no nodes in this tree.'
+    assert bst.balance() == 'There are no nodes in this tree.'
 
 
 def test_balance_returns_int(bst_big):
     """Test balancde returns int.."""
-    assert isinstance(bst_big.balance(bst_big.root), int)
+    assert isinstance(bst_big.balance(), int)
 
 
 def test_balance_returns_int_of_r_minus_l_of_tree(bst_big):
     """Test balance returns int of left minus right sides of tree."""
-    assert bst_big.balance(bst_big.root) == -1
+    assert bst_big.balance() == -1
 
 
 def test_balance_returns_int_of_r_minus_l_of_tree_two(bst_full, bst):
@@ -147,8 +147,8 @@ def test_balance_returns_int_of_r_minus_l_of_tree_two(bst_full, bst):
     bst.insert(2)
     bst.insert(1)
     bst.insert(3)
-    assert bst.balance(bst.root) == 0
-    assert bst_full.balance(bst_full.root) == -2
+    assert bst.balance() == 0
+    assert bst_full.balance() == -2
 
 
 def test_balance_returns_int_of_r_minus_l_of_tree_three(bst):
@@ -160,4 +160,4 @@ def test_balance_returns_int_of_r_minus_l_of_tree_three(bst):
     bst.insert(5)
     bst.insert(6)
     bst.insert(7)
-    assert bst.balance(bst.root) == -6
+    assert bst.balance() == -6
