@@ -1,4 +1,4 @@
-"""Implement a class for a graph data structure."""
+"""Implement a class for graph data structure with weighted edges."""
 
 
 class Graph(object):
@@ -16,37 +16,27 @@ class Graph(object):
         """Return a list of edges in graph."""
         edges = []
         for key in self._graph:
-            for i in self._graph[key]:
-                edges.append((key, i, self._graph[key][i]))
+            for child in self._graph[key]:
+                edges.append((key, child, self._graph[key][child]))
         return edges
 
     def add_node(self, val):
         """Add a node with value of val to graph."""
-        self._graph[val] = {}
+        self._graph.setdefault(val, {})
 
     def add_edge(self, val1, val2, weight=0):
         """Add a new edge to graph between val1 & val2 as well as add vals."""
-        if val1 in self._graph and val2 in self._graph:
-            if val2 not in self._graph[val1]:
-                self._graph[val1][val2] = weight
-        elif val1 in self._graph and val2 not in self._graph:
-            self._graph[val2] = {}
-            self._graph[val1][val2] = weight
-        elif val2 in self._graph and val1 not in self._graph:
-            self._graph[val1] = {}
-            self._graph[val1][val2] = weight
-        else:
-            self._graph[val1] = {val2: weight}
-            self._graph[val2] = {}
+        self.add_node(val1)
+        self.add_node(val2)
+        self._graph[val1][val2] = weight
 
     def del_node(self, val):
         """Delete node w/val from graph, raises exception if not exist."""
         if val in self._graph:
             del self._graph[val]
             for key in self._graph:
-                for i in self._graph[key]:
-                    if i == val:
-                        del self._graph[key][val]
+                if val in self._graph[key]:
+                    del self._graph[key][val]
         else:
             raise ValueError('There is no node of that value in the graph.')
 
@@ -58,14 +48,11 @@ class Graph(object):
             else:
                 raise ValueError('These edges do not exist.')
         except KeyError:
-            raise ValueError('These edges do not exist.')
+            raise ValueError('This edge does not exist.')
 
     def has_node(self, val):
         """Return true or false if node has value."""
-        if val in self._graph:
-            return True
-        else:
-            return False
+        return val in self._graph
 
     def neighbors(self, val):
         """Return list of nodes connected node(val)."""
@@ -82,17 +69,14 @@ class Graph(object):
             else:
                 return neighbors
         except KeyError:
-            raise ValueError('This node dosent exit')
+            raise ValueError('This node does not exit')
 
     def adjacent(self, val1, val2):
         """Return true if edge between vals, else false, & error if no val."""
-        if val1 in self._graph and val2 in self._graph:
-            if val2 in self._graph[val1]:
-                return True
-            else:
-                return False
-        else:
-            raise ValueError('These edges do not exist.')
+        try:
+            return val2 in self._graph[val1]
+        except KeyError:
+            raise ValueError('{} is not a node in this graph'.format(val1))
 
     def depth_first_traversal(self, start_val):
         """Traverse the graph from first edge of each node until ultimate."""
@@ -103,7 +87,7 @@ class Graph(object):
                 val = path.pop()
                 if val not in depth_traversal:
                     depth_traversal.append(val)
-                    path = path + list(self._graph[val].keys())
+                    path += list(self._graph[val].keys())
             return depth_traversal
         else:
             raise ValueError('Value is not in graph.')
