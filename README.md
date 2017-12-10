@@ -306,10 +306,12 @@ Trie() contains the following methods:
 * _contains(string) (0 log(n))_ - returns True if word is in trie and False if not.
 * _size() (O(1))_ - retruns the number of words in the trie.
 * _remove(string) (O log(n))_ - removes word from trie and raises error if word not in trie.
+* _trie_traversal(string) (O(n))_ - creates a generator returning each letter of trie beyond input word one at a time. 
 
 To access any contained methods:
 new.insert(string)
 new.contains(string)
 new.size()
 new.remove(string)
+new.trie_traversal(string)
 ```

@@ -83,31 +83,23 @@ class Trie(object):
                     break
         self._size -= 1
 
-    def trie_traversal(self, string):
+    def trie_traversal(self, string=''):
         """Traverse the depth of the trie from string, else root."""
         if not isinstance(string, str):
             raise TypeError('You can only traverse with a word.')
         string = list(string.lower())
         output = []
-        paths = []
         trace = self.root
-        while True:
-            if len(string) > 0:
-                s = string.pop(0)
-                if s in trace.children:
-                    output.append(s)
-                    trace = trace.children[s]
+        for letter in string:
+            if letter in trace.children:
+                trace = trace.children[letter]
             else:
-                if len(trace.children) > 1:
-                    for key in trace.children:
-                        import pdb; pdb.set_trace()
-                        paths.append(trace.children[key].letter)
-                elif len(trace.children) == 1:
-                    output.append(list(trace.children.keys())[0])
-                    trace = trace.children[output[-1]]
-                elif len(trace.children) == 0:
-                    if len(paths) > 0:
-                        trace = paths.pop(0)
-                    else:
-                        break
-        yield output.pop(0)
+                return
+        while True:
+            if len(list(trace.children.keys())) >= 1:
+                for key in trace.children:
+                    output.append(trace.children[key])
+            if len(output) == 0:
+                break
+            trace = output.pop(0)
+            yield trace.letter
