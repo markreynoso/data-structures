@@ -334,6 +334,18 @@ Insert sort takes in a list of numbers and uses an insert sort method to return 
 To use insert_sort, from insert_sort import insert_sort.
 Pass in a list of numbers insert_sort(list).
 
-* _bubble_sort(list) (O(n^2))_
+* _insert_sort(list) (O(n^2))_
+
+```
+
+### Merge Sort
+
+```
+Merge sort takes in a list of numbers and uses an merge sort method to return a sorted list. 
+
+To use merge_sort, from merge_sort import merge_sort.
+Pass in a list of numbers merge_sort(list).
+
+* _merge_sort(list) (O(n log(n)))_
 
 ```
