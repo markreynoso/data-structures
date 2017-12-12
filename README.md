@@ -361,3 +361,15 @@ Pass in a list of numbers quick_sort(list).
 * _quick_sort(list) (O(n log(n)))_
 
 ```
+
+### Radix Sort
+
+```
+Radix sort takes in a list of numbers and uses an radix sort method to return a sorted list. 
+
+To use radix_sort, from radix_sort import radix_sort.
+Pass in a list of numbers radix_sort(list).
+
+* _radix_sort(list) (O(n * k))_
+
+```
