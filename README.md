@@ -349,3 +349,15 @@ Pass in a list of numbers merge_sort(list).
 * _merge_sort(list) (O(n log(n)))_
 
 ```
+
+### Quick Sort
+
+```
+Quick sort takes in a list of numbers and uses an quick sort method to return a sorted list. 
+
+To use quick_sort, from quick_sort import quick_sort.
+Pass in a list of numbers quick_sort(list).
+
+* _quick_sort(list) (O(n log(n)))_
+
+```
