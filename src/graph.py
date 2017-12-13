@@ -17,7 +17,7 @@ class Graph(object):
         edges = []
         for key in self._graph:
             for child in self._graph[key]:
-                edges.append((key, child, self._graph[key][child]))
+                edges.append((key, child))
         return edges
 
     def add_node(self, val):
