@@ -68,25 +68,25 @@ class Bst(object):
         """Return size of bst."""
         return self._size
 
-    def depth(self, root=0):
+    def depth(self, root='foo'):
         """Return total number of levels in bst."""
-        if root == 0:
+        # import pdb; pdb.set_trace()
+        if root is 'foo':
             if self.root is None:
                 return 0
             else:
                 root = self.root
-        elif root is None:
+        if root is None:
             return 0
-        elif root == self.root and not root.left and not root.right:
+        elif root == self.root and root.left is None and root.right is None:
             return 0
-        elif not root.left and not root.right:
-            return 1
-        elif root.left and not root.right:
+        elif root.left is None and root.right is None:
+            return 0
+        elif root.right is None:
             return self.depth(root.left) + 1
-        elif root.right and not root.left:
+        elif root.left is None:
             return self.depth(root.right) + 1
-        else:
-            return max(self.depth(root.left), self.depth(root.right))
+        return max(self.depth(root.left), self.depth(root.right)) + 1
 
     def contains(self, val):
         """Search for val in tree and return boolean."""
@@ -95,19 +95,27 @@ class Bst(object):
         else:
             return False
 
-    def balance(self, node=0):
+    def balance(self, node='foo'):
         """Return integer indicating balance of tree."""
-        if node is 0:
+        if node is 'foo':
             if self.root is None:
                 return 'There are no nodes in this tree.'
             else:
                 node = self.root
+        depth_left = 0
+        depth_right = 0
         if node is None:
-            return 0
-        if not node.left and not node.right:
-            return 0
+            return
+        elif node.left is None and node.right is None:
+            return
+        elif node.right is None:
+            depth_left += self.depth(node.left) + 1
+        elif node.left is None:
+            depth_right += self.depth(node.right) + 1
         else:
-            return self.depth(node.left) - self.depth(node.right)
+            depth_left = self.depth(node.left)
+            depth_right = self.depth(node.right)
+        return depth_left - depth_right
 
 
 if __name__ == '__main__':  # pragma: no cover
