@@ -105,6 +105,20 @@ def test_del_node_deletes_the_node_given(g):
     assert 7 not in g.nodes()
 
 
+def test_del_node_deletes_the_node_and_edges_given(g):
+    """Test del node delets the node."""
+    g.add_node(5)
+    g.add_node(7)
+    g.add_node(9)
+    g.add_edge(7, 9)
+    g.add_edge(5, 7)
+    g.del_node(7)
+    assert g.edges() == []
+    assert g.neighbors(9) == []
+    assert g.neighbors(5) == []
+    assert 7 not in g.nodes()
+
+
 def test_del_node_raises_value_error(g):
     """Test del node raises value error if node has been deleted."""
     g.add_node(5)

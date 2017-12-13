@@ -43,10 +43,7 @@ class Graph(object):
     def del_edge(self, val1, val2):
         """Delete edge between val1 & val2 from graph."""
         try:
-            if val2 in self._graph[val1]:
-                del self._graph[val1][val2]
-            else:
-                raise ValueError('These edges do not exist.')
+            del self._graph[val1][val2]
         except KeyError:
             raise ValueError('This edge does not exist.')
 
