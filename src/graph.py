@@ -107,13 +107,12 @@ class Graph(object):
         else:
             raise ValueError('Value is not in graph.')
 
-    def dijkstra(self, start):
+    def dijkstra(self, start, end):
         """Dijkysta algorithm to calculate the shortest path."""
         distance = {start: 0}
         parents = {}
 
         not_visited = list(self._graph.keys())
-
         while not_visited:
             min_node = None
             for val in not_visited:
@@ -124,26 +123,25 @@ class Graph(object):
                         min_node = val
             not_visited.remove(min_node)
             if self._graph[min_node] == {}:
-                return parents
+                break
             else:
                 for edge in self._graph[min_node]:
                     length = distance[min_node] + self._graph[min_node][edge]
                     if edge not in distance or length < distance[edge]:
                         distance[edge] = length
                         parents[edge] = min_node
-
-        return parents
-
-    def shortest_distance(self, start, end):
-        """Utilize dijkstra to find the shortest path."""
-        d = self.dijkstra(start)
-        if d == {}:
-            raise ValueError('This start node has no edges.')
-        path = [end]
-        while end != start:
-            path.insert(0, d[end])
-            end = d[end]
-        return path
+        if end in distance:
+            total_distance = distance[end]
+            path = [end]
+            while end != start:
+                if end in parents:
+                    path.insert(0, parents[end])
+                    end = parents[end]
+                else:
+                    return 'There is no path between these nodes.'
+            return total_distance, path
+        else:
+            return 'There is no path between these nodes.'
 
 
 if __name__ == '__main__':  # pragma: no cover
