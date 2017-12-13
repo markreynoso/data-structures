@@ -61,6 +61,11 @@ class Graph(object):
     def adjacent(self, val1, val2):
         """Return true if edge between vals, else false, & error if no val."""
         try:
-            return val2 in self._graph[val1]
+            self._graph[val1]
+            self._graph[val2]
+            if val2 in self._graph[val1]:
+                return True
+            else:
+                return False
         except KeyError:
-            raise ValueError('{} is not a node in this graph'.format(val1))
+            raise ValueError('Node is not a node in this graph')
