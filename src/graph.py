@@ -57,26 +57,21 @@ class Graph(object):
     def neighbors(self, val):
         """Return list of nodes connected node(val)."""
         try:
-            self._graph[val]
-            neighbors = []
-            for key in self._graph[val]:
-                if key not in neighbors:
-                    neighbors.append(key)
-            for key in self._graph:
-                for child in self._graph[key]:
-                    if child == val and key not in neighbors:
-                        neighbors.append(key)
-            else:
-                return neighbors
+            return list(self._graph[val].keys())
         except KeyError:
-            raise ValueError('This node does not exit')
+            raise ValueError('This node does not exist')
 
     def adjacent(self, val1, val2):
         """Return true if edge between vals, else false, & error if no val."""
         try:
-            return val2 in self._graph[val1]
+            self._graph[val1]
+            self._graph[val2]
+            if val2 in self._graph[val1]:
+                return True
+            else:
+                return False
         except KeyError:
-            raise ValueError('{} is not a node in this graph'.format(val1))
+            raise ValueError('Node is not a node in this graph')
 
     def depth_first_traversal(self, start_val):
         """Traverse the graph from first edge of each node until ultimate."""
