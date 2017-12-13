@@ -53,8 +53,7 @@ class HashTable(object):
                     self._buckets[hash_key][idx] = (key, val)
                     return 'Your data {} has been updated to {} at key {}.'\
                         .format(gone, val, key)
-                else:
-                    self._buckets[hash_key].append((key, val))
+            self._buckets[hash_key].append((key, val))
 
     def _hash(self, key):
         """Hash the data given on set."""
