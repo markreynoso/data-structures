@@ -76,6 +76,18 @@ def test_horners_input_same_key_twice_resets_val():
     assert table.get('Mark') == 'Reynoso'
 
 
+def test_horners_same_hash_val():
+    """Test set at same key twice updates value at key."""
+    from hash_table import HashTable, horner_hash
+    table = HashTable(10, horner_hash)
+    table.set('Mark', 'Mark')
+    table.set('kraM', 'kram')
+    mark = table.get('Mark')
+    kram = table.get('kraM')
+    assert mark == 'Mark'
+    assert kram == "kram"
+
+
 def test_horners_hash_returns_int_between_zero_and_input():
     """Test navie hash returns an int between zero and len buckets."""
     from hash_table import horner_hash
