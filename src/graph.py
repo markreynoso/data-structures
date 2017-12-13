@@ -22,31 +22,21 @@ class Graph(object):
 
     def add_node(self, val):
         """Add a node with value of val to graph."""
-        self._graph[val] = {}
+        self._graph.setdefault(val, {})
 
     def add_edge(self, val1, val2, weight=0):
         """Add a new edge to graph between val1 & val2 as well as add vals."""
-        if val1 in self._graph and val2 in self._graph:
-            if val2 not in self._graph[val1]:
-                self._graph[val1][val2] = weight
-        elif val1 in self._graph and val2 not in self._graph:
-            self._graph[val2] = {}
-            self._graph[val1][val2] = weight
-        elif val2 in self._graph and val1 not in self._graph:
-            self._graph[val1] = {}
-            self._graph[val1][val2] = weight
-        else:
-            self._graph[val1] = {val2: weight}
-            self._graph[val2] = {}
+        self.add_node(val1)
+        self.add_node(val2)
+        self._graph[val1][val2] = weight
 
     def del_node(self, val):
         """Delete node w/val from graph, raises exception if not exist."""
         if val in self._graph:
             del self._graph[val]
             for key in self._graph:
-                for i in self._graph[key]:
-                    if i == val:
-                        del self._graph[key][val]
+                if val in self._graph[key]:
+                    del self._graph[key][val]
         else:
             raise ValueError('There is no node of that value in the graph.')
 
@@ -117,7 +107,7 @@ class Graph(object):
         else:
             raise ValueError('Value is not in graph.')
 
-    def dijkstra(self, start, end):
+    def dijkstra(self, start):
         """Dijkysta algorithm to calculate the shortest path."""
         distance = {start: 0}
         parents = {}
@@ -142,7 +132,11 @@ class Graph(object):
                         distance[edge] = length
                         parents[edge] = min_node
 
-        d = parents
+        return parents
+
+    def shortest_distance(self, start, end):
+        """Utilize dijkstra to find the shortest path."""
+        d = self.dijkstra(start)
         if d == {}:
             raise ValueError('This start node has no edges.')
         path = [end]
