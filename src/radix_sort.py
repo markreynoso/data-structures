@@ -36,8 +36,7 @@ if __name__ == '__main__':
     print('\nCASE 1: A small list to be sorted:\n'
           '[45, 25, 80, 3, 6, 19, 400, 34]\n')
     start_simple = time.time()
-    test = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # test = [45, 25, 80, 3, 6, 19, 400, 34]
+    test = [45, 25, 80, 3, 6, 19, 400, 34]
     print(radix_sort(test))
     solve_simple = (time.time() - start_simple)
     print('\nSorted using radix_sort() in {} seconds.'.format(solve_simple))
