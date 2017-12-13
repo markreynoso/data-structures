@@ -71,14 +71,9 @@ class Graph(object):
         """Return list of nodes connected node(val)."""
         try:
             self._graph[val]
-            neighbors = []
+            neighbors = {}
             for key in self._graph[val]:
-                if key not in neighbors:
-                    neighbors.append(key)
-            for key in self._graph:
-                for child in self._graph[key]:
-                    if child == val and key not in neighbors:
-                        neighbors.append(key)
+                neighbors.setdefault(key, self._graph[val][key])
             else:
                 return neighbors
         except KeyError:
@@ -122,7 +117,7 @@ class Graph(object):
         else:
             raise ValueError('Value is not in graph.')
 
-    def dijkstra(self, start):
+    def dijkstra(self, start, end):
         """Dijkysta algorithm to calculate the shortest path."""
         distance = {start: 0}
         parents = {}
@@ -147,11 +142,7 @@ class Graph(object):
                         distance[edge] = length
                         parents[edge] = min_node
 
-        return parents
-
-    def shortest_distance(self, start, end):
-        """Utilize dijkstra to find the shortest path."""
-        d = self.dijkstra(start)
+        d = parents
         if d == {}:
             raise ValueError('This start node has no edges.')
         path = [end]

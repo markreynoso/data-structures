@@ -162,30 +162,6 @@ def test_has_node_if_value_in_graph(g):
     assert g.has_node(5) is True
 
 
-def test_neighbors_return_list_of_nodes_connected_to_input(g):
-    """Test neighbor retutns the list of nodes connected input value."""
-    g.add_node(5)
-    g.add_node(7)
-    g.add_edge(5, 7)
-    g.add_node(8)
-    g.add_node(9)
-    g.add_edge(5, 9)
-    g.add_edge(5, 8)
-    assert sorted(g.neighbors(5)) == [7, 8, 9]
-
-
-def test_neighbors_raises_valueerror_if_node_not_exist(g):
-    """Test neighbor raises value error if input not a node."""
-    g.add_node(5)
-    g.add_node(7)
-    g.add_edge(5, 7)
-    g.add_node(8)
-    g.add_node(9)
-    g.add_edge(5, 9)
-    with pytest.raises(ValueError):
-        g.neighbors(20)
-
-
 def test_adjacent_if_two_nodes_have_edge_is_true(g):
     """Test adjacent has  edges returns true when edge exists."""
     g.add_node(5)
