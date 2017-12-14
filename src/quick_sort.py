@@ -5,7 +5,6 @@ from random import randint
 
 def quick_sort(num_list):
     """Use the quick sort method to sort a list of numbers."""
-    import pdb; pdb.set_trace()
     if len(num_list) > 1:
 
         pivot = num_list[0]
