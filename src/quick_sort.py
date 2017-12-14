@@ -5,6 +5,7 @@ from random import randint
 
 def quick_sort(num_list):
     """Use the quick sort method to sort a list of numbers."""
+    import pdb; pdb.set_trace()
     if len(num_list) > 1:
 
         pivot = num_list[0]
@@ -27,10 +28,7 @@ def quick_sort(num_list):
 
         num_list[0], num_list[right_mark] = num_list[right_mark], num_list[0]
 
-        # left = num_list[:right_mark]
         divider = right_mark + 1
-        # right = num_list[divider:]
-        # split = num_list[right_mark]
         left = quick_sort(num_list[:right_mark])
         right = quick_sort(num_list[divider:])
         return left + [num_list[right_mark]] + right
