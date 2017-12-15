@@ -7,7 +7,7 @@ Where a variety of data-structures found in python are being explored, such as:
 
 ## Authors
 
-ChaiChaitanya Narukulla and Mark Reynoso created this code base as a project for Python 401 at Code Fellows Seattle. 
+ChaiChaitanya Narukulla and Mark Reynoso created this code base as a project for Python 401 at Code Fellows Seattle.
 
 ### Requirements for testing and development
 
@@ -228,7 +228,7 @@ new.breadth_first_traversal(start_val)
 ### Shortest Distance Problem
 
 ```
-The problem of the traveling salesperson finding the shortest distance between points can be solved in a variety of ways. We have used Dijkstra's Algorith as our first method to a solution. 
+The problem of the traveling salesperson finding the shortest distance between points can be solved in a variety of ways. We have used Dijkstra's Algorith as our first method to a solution.
 
 _Dijkstra's Algorithm_ (On) - finds the shortest path exploring all edges of a graph from it's starting point. By comparing the distance or weight of the edges from the start to each child as it traverses the graph it is able to calculate the shortest route by saving the parent path which will have the lowest cost from start to finish.
 
@@ -240,7 +240,7 @@ dijkstra(graph, start, end)
 ### Self-Balancing Binary Search Tree
 
 ```
-Tree will maintain a balance of no more that 1 or -1 and will automatically rebalance on any insert or delete into the tree using the methods described below. 
+Tree will maintain a balance of no more that 1 or -1 and will automatically rebalance on any insert or delete into the tree using the methods described below.
 
 To create an instance if the binary search tree, Bst(), from python:
 
@@ -276,7 +276,7 @@ new.delete(val)
 ### Hash Table
 
 ```
-Using a naive hash and slightly more complex hash with Horner's Rule, HashTable() will store based on the supplied key, which must be a string. By default, HashTable() uses the naive hash method, but can be changed on initialization. 
+Using a naive hash and slightly more complex hash with Horner's Rule, HashTable() will store based on the supplied key, which must be a string. By default, HashTable() uses the naive hash method, but can be changed on initialization.
 
 To create an instance if the hash table, HashTable(), from python:
 
@@ -295,7 +295,7 @@ new.get(key)
 ### Trie
 
 ```
-In order to efficiently store words, Trie() will provide a class by which nodes are only inserted if unshared by anthor word. All words share previous characters when possible. 
+In order to efficiently store words, Trie() will provide a class by which nodes are only inserted if unshared by another word. All words share previous characters when possible.
 
 To create an instance if the trie, Trie(), from python:
 
@@ -304,7 +304,7 @@ new = Trie() *you may not initiate the trie with any values.*
 Trie() contains the following methods:
 * _insert(string) (O log(n))_ - inserts a new node for every letter in string (input must be word) if not able to share with another word.
 * _contains(string) (0 log(n))_ - returns True if word is in trie and False if not.
-* _size() (O(1))_ - retruns the number of words in the trie.
+* _size() (O(1))_ - returns the number of words in the trie.
 * _remove(string) (O log(n))_ - removes word from trie and raises error if word not in trie.
 
 To access any contained methods:
@@ -312,4 +312,36 @@ new.insert(string)
 new.contains(string)
 new.size()
 new.remove(string)
+```
+
+# Javascript
+
+Using the same methods and features as above, data-structures are implemented using javascript.
+
+to install;
+```
+npm install .
+```
+### Linked List
+
+To create an instance of a the LinkedList() class in node:
+
+let new = new LinkedList() *you may choose and optional parameter of a single value or an iterable.*
+
+LinkedList() contains the following methods:
+```
+* _push(val) (O1)_ - will insert the value ‘val’ at the head of the list.
+* _pop() (O1)_ - will pop the first value off the head of the list and return it. Returns  appropriate message if there are no values to return.
+* _size() (01)_ - will return the length of the list.
+* _search(val) (On)_ - will return the node containing ‘val’ in the list, if present, else error message.
+* _remove(node) (On)_ - will remove the given node from the list, wherever it might be (node must be an item in the list). If the node is not in the list, it will raise an exception with an appropriate message.
+* _display() (O1)_ - will return a unicode string in the following structure: “(12, ‘sam’, 37, ‘tango’)”
+
+To access any contained methods:
+new.push(val)
+new.pop()
+new.size()
+new.search(val)
+new.remove(node)
+new.display()
 ```
