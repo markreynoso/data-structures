@@ -1,0 +1,17 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "javascript data-structures",
+  "main": "linked_list.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Mark Reynoso",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "chai": "^4.1.2"
+  }
+}
