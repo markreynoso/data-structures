@@ -438,62 +438,53 @@ test_graph = {
           },
 }
 
-
-def test_dijkstra_returns_best_parents():
-    """Test dijkstra returns each nodes best parents."""
-    g = Graph()
-    g._graph = test_graph
-    assert g.dijkstra('A') == {'B': 'A', 'C': 'A', 'D':
-                               'B', 'E': 'D', 'F': 'C', 'G': 'D'}
-
-
-def test_dijkstra_returns_best_parents_on_diffrent_path():
-    """Test dijkstra returns each nodes best parents."""
-    g = Graph()
-    g._graph = test_graph
-    assert g.dijkstra('A') == {'B': 'A', 'C': 'A', 'D': 'B', 'E':
-                               'D', 'F': 'C', 'G': 'D'}
+# test_graph = {
+#     'a': {'b': 1,
+#           'c': 2},
+#     'b': {},
+#     'c': {'d': 3},
+#     'd': {}
+# }
 
 
-def test_dijkstra_returns_best_parents_of_the_node():
-    """Test dijkstra returns each nodes best parents."""
-    g = Graph()
-    g._graph = graph
-    assert g.dijkstra('A') == {'B': 'A', 'C': 'A', 'D': 'A',
-                               'E': 'B', 'F': 'D', 'G': 'D'}
+# def test_dijkstra_returns_list():
+#     """Test for Shortest path from start node to end node."""
+#     g = Graph()
+#     g._graph = test_graph
+#     assert g.dijkstra('a', 'd') == (9, ['A', 'B', 'D', 'E'])
 
 
-def test_shortest_distance():
+def test_dijkstra():
     """Test for Shortest path from start node to end node."""
     g = Graph()
     g._graph = graph
-    assert g.shortest_distance('A', 'F') == ['A', 'D', 'F']
+    assert g.dijkstra('A', 'F') == (15, ['A', 'D', 'F'])
 
 
-def test_shortest_distance_returns_list():
+def test_dijkstra_returns_list():
     """Test for Shortest path from start node to end node."""
     g = Graph()
     g._graph = test_graph
-    assert g.shortest_distance('A', 'E') == ['A', 'B', 'D', 'E']
+    assert g.dijkstra('A', 'E') == (9, ['A', 'B', 'D', 'E'])
 
 
-def test_shortest_distance_returns_list_from_path_a_g():
+def test_dijkstra_returns_list_from_path_a_g():
     """Test for Shortest path from start node to end node."""
     g = Graph()
     g._graph = test_graph
-    assert g.shortest_distance('A', 'G') == ['A', 'B', 'D', 'G']
+    assert g.dijkstra('A', 'G') == (17, ['A', 'B', 'D', 'G'])
 
 
 def test_dijkstra_that_start_no_children_return_emty_dict():
     """Test dijkstra returns each nodes best parents."""
     g = Graph()
     g._graph = graph
-    assert g.dijkstra('G') == {}
+    assert g.dijkstra('G', 'A') == 'Your start has no edges.'
 
 
-def test_shortest_distance_raises_valueerror_if_start_has_no_edges():
+def test_dijkstra_raises_valueerror_if_start_has_no_edges():
     """Test shortest distance raises ValueError if start has no edges."""
     g = Graph()
     g._graph = test_graph
     with pytest.raises(ValueError):
-        g.shortest_distance('G', 'A')
+        g.dijkstra('G', 'A')

@@ -111,8 +111,11 @@ class Graph(object):
         """Dijkysta algorithm to calculate the shortest path."""
         distance = {start: 0}
         parents = {}
-
         not_visited = list(self._graph.keys())
+        if start not in self._graph:
+            raise ValueError('Your start node does not exist.')
+        if self._graph[start] == {}:
+            return 'Your start has no edges.'
         while not_visited:
             min_node = None
             for val in not_visited:
@@ -122,14 +125,11 @@ class Graph(object):
                     elif distance[val] < distance[min_node]:
                         min_node = val
             not_visited.remove(min_node)
-            if self._graph[min_node] == {}:
-                break
-            else:
-                for edge in self._graph[min_node]:
-                    length = distance[min_node] + self._graph[min_node][edge]
-                    if edge not in distance or length < distance[edge]:
-                        distance[edge] = length
-                        parents[edge] = min_node
+            for edge in self._graph[min_node]:
+                length = distance[min_node] + self._graph[min_node][edge]
+                if edge not in distance or length < distance[edge]:
+                    distance[edge] = length
+                    parents[edge] = min_node
         if end in distance:
             total_distance = distance[end]
             path = [end]
