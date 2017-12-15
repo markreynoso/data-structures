@@ -345,3 +345,22 @@ new.search(val)
 new.remove(node)
 new.display()
 ```
+
+### Stack
+
+To create an instance of a Stack() class contained in node:
+
+let new = Stack() *you may choose and optional parameter of a single value or an iterable.*
+
+Stack() contains the following methods:
+```
+* _push(val) (O1)_ - will insert the value ‘val’ at the head of the stack.
+* _pop() (O1)_ - will pop the first value off the head of the stack and return it. Returns appropriate message if there are no values to return.
+* _size() (01)_ - returns size of stack.
+
+To access any contained methods:
+new.push(val)
+new.pop
+new.size()
+
+```
