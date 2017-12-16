@@ -17,7 +17,7 @@ class DoublyLL {
 
   push(val){
     let new_node = new Node(val)
-    if(self._size === 0){
+    if(this._size === 0){
       this.head = new_node
       this.tail = new_node
       this._size ++
@@ -26,7 +26,7 @@ class DoublyLL {
       new_node.next = this.head
       this.head.prev = new_node
       this.head = new_node
-      this.size ++
+      this._size ++
     }
   }
 
@@ -81,10 +81,10 @@ class DoublyLL {
     return current.data
   }
 
-  remove(node){
+  remove(val){
     let current = this.head
     while(current){
-      if(current === node){
+      if(current.data === val){
         if(current === this.head){
           this.pop()
         }
@@ -102,7 +102,7 @@ class DoublyLL {
         current = current.next
       }
     }
-    return 'Your node does not exist in this linked list.'
+    return 'Your input value does not exist in this linked list.'
   }
 }
 

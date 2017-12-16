@@ -364,3 +364,27 @@ new.pop
 new.size()
 
 ```
+
+### Doubly Linked List
+
+
+To create an instance of a DoublyLL() class in node:
+
+let new = DoublyLL() *you may not call DoublyLL() with any parameters.*
+
+DoublyLL() contains the following methods:
+```
+* _push(val) (O1)_ - will insert the value ‘val’ at the head of the list.
+* _append(val) (O1)_ - will insert the value ‘val’ at the tail of the list.
+* _pop() (O1)_ - will pop the first value off the head of the stack and return it. Returns appropriate message if there are no values to return.
+* _shift() (O1)_ - will remove the last value off the tail of the list and return it. Returns an appropriate message if there are no values to return.
+* _remove(val) (On)_ - will remove the first instance of the given value from the list, wherever it might be (value must be related to a node in the list). If the node is not in the list, it will return an appropriate message.
+
+To access any contained methods:
+new.push(val)
+new.append(val)
+new.pop()
+new.shift()
+new.remove()
+
+```
